@@ -21,53 +21,53 @@ A Terraform module for an AWS Virtual Private Cloud (VPC)
 
 | Name | Type |
 |------|------|
-| [aws_ec2_transit_gateway_vpc_attachment.attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ec2_transit_gateway_vpc_attachment) | resource |
-| [aws_eip.ngw_eip](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eip) | resource |
+| [aws_ec2_transit_gateway_vpc_attachment.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ec2_transit_gateway_vpc_attachment) | resource |
+| [aws_eip.nat_gateway](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eip) | resource |
 | [aws_instance.bastion](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance) | resource |
-| [aws_internet_gateway.igw](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/internet_gateway) | resource |
+| [aws_internet_gateway.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/internet_gateway) | resource |
 | [aws_key_pair.bastion_ec2_key](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/key_pair) | resource |
-| [aws_nat_gateway.ngw](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/nat_gateway) | resource |
-| [aws_network_acl.endpoint_nacl](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl) | resource |
-| [aws_network_acl.nacl](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl) | resource |
-| [aws_network_acl.ngw_nacl](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl) | resource |
-| [aws_network_acl.tgw_nacl](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl) | resource |
+| [aws_nat_gateway.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/nat_gateway) | resource |
+| [aws_network_acl.nat_gateway](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl) | resource |
+| [aws_network_acl.peering](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl) | resource |
+| [aws_network_acl.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl) | resource |
+| [aws_network_acl.vpc_endpoint](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl) | resource |
 | [aws_network_acl_rule.ngw_egress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl_rule) | resource |
 | [aws_network_acl_rule.ngw_ephemeral_ingress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl_rule) | resource |
 | [aws_network_acl_rule.ngw_subnet_ingress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl_rule) | resource |
-| [aws_network_acl_rule.rule](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl_rule) | resource |
-| [aws_network_acl_rule.rule_by_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl_rule) | resource |
-| [aws_route.igw_route](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route) | resource |
-| [aws_route.ngw_route](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route) | resource |
-| [aws_route.route](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route) | resource |
-| [aws_route.tgw_route](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route) | resource |
+| [aws_network_acl_rule.subnet_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl_rule) | resource |
+| [aws_network_acl_rule.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl_rule) | resource |
+| [aws_route.internet_gateway](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route) | resource |
+| [aws_route.nat_gateway](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route) | resource |
+| [aws_route.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route) | resource |
+| [aws_route.transit_gateway](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route) | resource |
 | [aws_route53_resolver_rule_association.rule](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_resolver_rule_association) | resource |
-| [aws_route_table.endpoint_route_table](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table) | resource |
-| [aws_route_table.ngw_route_table](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table) | resource |
-| [aws_route_table.route_table](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table) | resource |
-| [aws_route_table.tgw_route_table](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table) | resource |
-| [aws_route_table_association.association](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table_association) | resource |
-| [aws_route_table_association.endpoint](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table_association) | resource |
-| [aws_route_table_association.ngw](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table_association) | resource |
-| [aws_route_table_association.tgw](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table_association) | resource |
+| [aws_route_table.nat_gateway](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table) | resource |
+| [aws_route_table.peering](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table) | resource |
+| [aws_route_table.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table) | resource |
+| [aws_route_table.vpc_endpoint](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table) | resource |
+| [aws_route_table_association.nat_gateway](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table_association) | resource |
+| [aws_route_table_association.peering](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table_association) | resource |
+| [aws_route_table_association.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table_association) | resource |
+| [aws_route_table_association.vpc_endpoint](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table_association) | resource |
 | [aws_security_group.bastion](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
-| [aws_security_group.endpoint](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
+| [aws_security_group.vpc_endpoint](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_security_group_rule.bastion_cidr_ingress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
 | [aws_security_group_rule.bastion_egress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
 | [aws_security_group_rule.bastion_self_ingress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
 | [aws_security_group_rule.bastion_sg_ingress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
-| [aws_security_group_rule.endpoint_egress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
-| [aws_security_group_rule.endpoint_ingress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
-| [aws_subnet.endpoint_subnet](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
-| [aws_subnet.ngw_subnet](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
-| [aws_subnet.subnet](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
-| [aws_subnet.tgw_subnet](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
-| [aws_vpc.vpc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc) | resource |
-| [aws_vpc_dhcp_options.dhcp_options](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_dhcp_options) | resource |
-| [aws_vpc_dhcp_options_association.dhcp_options_association](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_dhcp_options_association) | resource |
-| [aws_vpc_endpoint.endpoint](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint) | resource |
-| [aws_vpc_ipv4_cidr_block_association.secondary_cidr](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_ipv4_cidr_block_association) | resource |
-| [aws_vpc_peering_connection.peer](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_peering_connection) | resource |
-| [aws_vpc_peering_connection_accepter.peer_accepter](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_peering_connection_accepter) | resource |
+| [aws_security_group_rule.vpc_endpoint_egress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
+| [aws_security_group_rule.vpc_endpoint_ingress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
+| [aws_subnet.nat_gateway](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
+| [aws_subnet.peering](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
+| [aws_subnet.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
+| [aws_subnet.vpc_endpoint](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
+| [aws_vpc.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc) | resource |
+| [aws_vpc_dhcp_options.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_dhcp_options) | resource |
+| [aws_vpc_dhcp_options_association.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_dhcp_options_association) | resource |
+| [aws_vpc_endpoint.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint) | resource |
+| [aws_vpc_ipv4_cidr_block_association.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_ipv4_cidr_block_association) | resource |
+| [aws_vpc_peering_connection.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_peering_connection) | resource |
+| [aws_vpc_peering_connection_accepter.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_peering_connection_accepter) | resource |
 | [tls_private_key.bastion_ssh_key](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/resources/private_key) | resource |
 | [aws_ami.al2](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
@@ -88,12 +88,12 @@ A Terraform module for an AWS Virtual Private Cloud (VPC)
 | <a name="input_internet_gateway"></a> [internet\_gateway](#input\_internet\_gateway) | Configurations for the internet gateway used by this VPC | <pre>object({<br>    tags = optional(map(string))<br>  })</pre> | `{}` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name of the VPC, and the prefix for resources created within the VPC | `string` | n/a | yes |
 | <a name="input_nat_gateway_subnets"></a> [nat\_gateway\_subnets](#input\_nat\_gateway\_subnets) | Configuration options for the subnets created to house Nat Gateway attachment network interfaces | <pre>object({<br>    newbits      = optional(number)<br>    first_netnum = optional(number)<br>  })</pre> | <pre>{<br>  "first_netnum": null,<br>  "newbits": null<br>}</pre> | no |
+| <a name="input_peering_subnets"></a> [peering\_subnets](#input\_peering\_subnets) | Configuration options for the subnets created to house vpc peering/ tgw network interfaces | <pre>object({<br>    newbits      = optional(number)<br>    first_netnum = optional(number)<br>  })</pre> | `{}` | no |
 | <a name="input_route53_resolver_rule_associations"></a> [route53\_resolver\_rule\_associations](#input\_route53\_resolver\_rule\_associations) | Route 53 Resolver rules to associate with this VPC | `list(string)` | `[]` | no |
 | <a name="input_secondary_ipv4_cidr_blocks"></a> [secondary\_ipv4\_cidr\_blocks](#input\_secondary\_ipv4\_cidr\_blocks) | Additional IPv4 CIDR blocks to assign to the VPC | <pre>list(object({<br>    cidr_block          = optional(string)<br>    ipv4_ipam_pool_id   = optional(string)<br>    ipv4_netmask_length = optional(number)<br>  }))</pre> | `[]` | no |
 | <a name="input_subnet_groups"></a> [subnet\_groups](#input\_subnet\_groups) | Configurations for groups of subnets. For each group, one subnet will be created in each availability zone.<br>Each subnet in a group will share a common network ACL. If the subnet group type is 'private', routes to a <br>nat gateway will be created. If the subnet group type is 'public', routes to an internet gateway will be created.<br>If the subnet group type is 'airgapped', neither will be created. | <pre>list(object({<br>    assign_ipv6_address_on_creation = optional(bool)<br>    customer_owned_ipv4_pool        = optional(string)<br>    first_netnum                    = number<br>    ipv6_first_netnum               = optional(number)<br>    ipv6_newbits                    = optional(number)<br>    ipv6_prefix                     = optional(string)<br>    map_customer_owned_ip_on_launch = optional(bool)<br>    map_public_ip_on_launch         = optional(bool)<br>    nacl = optional(list(object({<br>      cidr_block      = optional(string)<br>      from_port       = number<br>      egress          = optional(bool, false)<br>      ipv6_cidr_block = optional(string)<br>      protocol        = string<br>      action          = string<br>      rule_no         = number<br>      subnet_group    = optional(string)<br>      to_port         = number<br>      tags            = optional(map(string))<br>    })), [])<br>    name             = string<br>    newbits          = number<br>    outpost_arn      = optional(string)<br>    route_table_tags = optional(map(string))<br>    routes = optional(list(object({<br>      carrier_gateway_id        = optional(string)<br>      cidr_block                = optional(string)<br>      ipv6_cidr_block           = optional(string)<br>      prefix_list_id            = optional(string)<br>      egress_only_gateway_id    = optional(string)<br>      gateway_id                = optional(string)<br>      local_gateway_id          = optional(string)<br>      nat_gateway_id            = optional(string)<br>      network_interface_id      = optional(string)<br>      transit_gateway_id        = optional(string)<br>      vpc_endpoint_id           = optional(string)<br>      vpc_peering_connection_id = optional(string)<br>    })))<br>    tags = optional(map(string))<br>    type = string<br>  }))</pre> | `[]` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to assign to the VPC | `map(string)` | `{}` | no |
 | <a name="input_transit_gateway_attachments"></a> [transit\_gateway\_attachments](#input\_transit\_gateway\_attachments) | Attachments to transit gateways from this VPC | <pre>list(object({<br>    appliance_mode_support                          = optional(string)<br>    dns_support                                     = optional(string)<br>    ipv6_support                                    = optional(string)<br>    tags                                            = optional(map(string))<br>    transit_gateway_id                              = string<br>    transit_gateway_default_route_table_association = optional(bool)<br>    transit_gateway_default_route_table_propagation = optional(bool)<br>  }))</pre> | `[]` | no |
-| <a name="input_transit_gateway_subnets"></a> [transit\_gateway\_subnets](#input\_transit\_gateway\_subnets) | Configuration options for the subnets created to house Transit Gateway attachment network interfaces | <pre>object({<br>    newbits      = optional(number)<br>    first_netnum = optional(number)<br>  })</pre> | `{}` | no |
 | <a name="input_vpc_endpoint_subnets"></a> [vpc\_endpoint\_subnets](#input\_vpc\_endpoint\_subnets) | Configuration options for the subnets created to house VPC endpoints | <pre>object({<br>    newbits      = optional(number)<br>    first_netnum = optional(number)<br>  })</pre> | `{}` | no |
 | <a name="input_vpc_endpoints"></a> [vpc\_endpoints](#input\_vpc\_endpoints) | VPC endpoints to create within this VPC | <pre>list(object({<br>    auto_accept         = optional(bool)<br>    policy              = optional(string)<br>    private_dns_enabled = optional(bool)<br>    route_tables = optional(list(object({<br>      subnet_group = string<br>      azs          = optional(list(string))<br>    })))<br>    service_name      = string<br>    tags              = optional(map(string))<br>    vpc_endpoint_type = optional(string)<br>  }))</pre> | `[]` | no |
 | <a name="input_vpc_peering_connection_accepters"></a> [vpc\_peering\_connection\_accepters](#input\_vpc\_peering\_connection\_accepters) | Accepters for vpc peering connections that originate elsewhere | <pre>list(object({<br>    auto_accept               = optional(bool)<br>    tags                      = optional(map(string))<br>    vpc_peering_connection_id = string<br>  }))</pre> | `[]` | no |
@@ -125,6 +125,9 @@ A Terraform module for an AWS Virtual Private Cloud (VPC)
 | <a name="output_nat_gateway_nacl"></a> [nat\_gateway\_nacl](#output\_nat\_gateway\_nacl) | The NACL that manages ingress and egress to the nat gateways for this VPC |
 | <a name="output_nat_gateway_route_table"></a> [nat\_gateway\_route\_table](#output\_nat\_gateway\_route\_table) | The route table used by the nat gateways in this VPC |
 | <a name="output_nat_gateway_subnets"></a> [nat\_gateway\_subnets](#output\_nat\_gateway\_subnets) | The subnets containing the nat gateways in this VPC |
+| <a name="output_peering_nacl"></a> [peering\_nacl](#output\_peering\_nacl) | The NACL used by the transit gateway subnets |
+| <a name="output_peering_route_table"></a> [peering\_route\_table](#output\_peering\_route\_table) | The route table for the peering subnets |
+| <a name="output_peering_subnets"></a> [peering\_subnets](#output\_peering\_subnets) | The subnets created for vpc peering/ tgw network interfaces |
 | <a name="output_region"></a> [region](#output\_region) | The region containing the vpc |
 | <a name="output_route53_resolver_rule_associations"></a> [route53\_resolver\_rule\_associations](#output\_route53\_resolver\_rule\_associations) | The value provided for var.route53\_resolver\_rule\_associations |
 | <a name="output_route_tables"></a> [route\_tables](#output\_route\_tables) | Route tables created for this VPC |
@@ -135,9 +138,6 @@ A Terraform module for an AWS Virtual Private Cloud (VPC)
 | <a name="output_subnets_by_group"></a> [subnets\_by\_group](#output\_subnets\_by\_group) | Subnets created in this VPC, nested by group and AZ (ex. module.my\_vpc.subnets\_by\_group["my-group"]["us-west-1a"].arn) |
 | <a name="output_tags"></a> [tags](#output\_tags) | Tags assigned to the VPC |
 | <a name="output_transit_gateway_attachments"></a> [transit\_gateway\_attachments](#output\_transit\_gateway\_attachments) | Attachments to transit gateways from this VPC |
-| <a name="output_transit_gateway_nacl"></a> [transit\_gateway\_nacl](#output\_transit\_gateway\_nacl) | The NACL used by the transit gateway subnets |
-| <a name="output_transit_gateway_route_table"></a> [transit\_gateway\_route\_table](#output\_transit\_gateway\_route\_table) | The route table for the transit gateway subnets |
-| <a name="output_transit_gateway_subnets"></a> [transit\_gateway\_subnets](#output\_transit\_gateway\_subnets) | The subnets created for Transit Gateway attachment network interfaces |
 | <a name="output_vpc"></a> [vpc](#output\_vpc) | The VPC resource object |
 | <a name="output_vpc_endpoint_nacl"></a> [vpc\_endpoint\_nacl](#output\_vpc\_endpoint\_nacl) | The NACL used by the VPC endpoint subnets |
 | <a name="output_vpc_endpoint_route_table"></a> [vpc\_endpoint\_route\_table](#output\_vpc\_endpoint\_route\_table) | The route table used by the VPC endpoint subnets |
