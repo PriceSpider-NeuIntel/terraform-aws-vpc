@@ -177,8 +177,8 @@ variable "transit_gateway_attachments" {
   default = []
 }
 
-variable "transit_gateway_subnets" {
-  description = "Configuration options for the subnets created to house Transit Gateway attachment network interfaces"
+variable "peering_subnets" {
+  description = "Configuration options for the subnets created to house vpc peering/ tgw network interfaces"
   type = object({
     newbits      = optional(number)
     first_netnum = optional(number)

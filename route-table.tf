@@ -1,4 +1,4 @@
-resource "aws_route_table" "route_table" {
+resource "aws_route_table" "this" {
   for_each = {
     for table in flatten([
       for group in var.subnet_groups : [
@@ -15,27 +15,26 @@ resource "aws_route_table" "route_table" {
     ]) : table.id => table
   }
 
-  vpc_id = aws_vpc.vpc.id
+  vpc_id = aws_vpc.this.id
 
   tags = merge(each.value.tags, {
-    "Availability Zones"   = each.value.az
-    "Managed By Terraform" = "true"
-    "Name"                 = "${var.name}-${each.value.id}"
-    "Type"                 = each.value.type
+    "Availability Zones" = each.value.az
+    "Name"               = "${var.name}-${each.value.id}"
+    "Type"               = each.value.type
   })
 }
 
-resource "aws_route" "igw_route" {
+resource "aws_route" "internet_gateway" {
   for_each = toset(flatten([
     for group in var.subnet_groups : group.name if group.type == "public"
   ]))
 
   destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = aws_internet_gateway.igw.id
-  route_table_id         = aws_route_table.route_table[each.key].id
+  gateway_id             = aws_internet_gateway.this.id
+  route_table_id         = aws_route_table.this[each.key].id
 }
 
-resource "aws_route" "ngw_route" {
+resource "aws_route" "nat_gateway" {
   for_each = {
     for route in flatten([
       for group in var.subnet_groups : [
@@ -48,11 +47,11 @@ resource "aws_route" "ngw_route" {
   }
 
   destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = aws_nat_gateway.ngw[each.value.az].id
-  route_table_id         = aws_route_table.route_table[each.key].id
+  nat_gateway_id         = aws_nat_gateway.this[each.value.az].id
+  route_table_id         = aws_route_table.this[each.key].id
 }
 
-resource "aws_route" "route" {
+resource "aws_route" "this" {
   for_each = {
     for route in flatten([
       for group in var.subnet_groups : group.type == "private" ? flatten([
@@ -88,13 +87,13 @@ resource "aws_route" "route" {
   nat_gateway_id              = each.value.nat_gateway_id
   local_gateway_id            = each.value.local_gateway_id
   network_interface_id        = each.value.network_interface_id
-  route_table_id              = aws_route_table.route_table[each.value.route_table_id].id
+  route_table_id              = aws_route_table.this[each.value.route_table_id].id
   transit_gateway_id          = each.value.transit_gateway_id
   vpc_endpoint_id             = each.value.vpc_endpoint_id
   vpc_peering_connection_id   = each.value.vpc_peering_connection_id
 }
 
-resource "aws_route_table_association" "association" {
+resource "aws_route_table_association" "this" {
   for_each = {
     for association in flatten([
       for group in var.subnet_groups : [
@@ -108,10 +107,10 @@ resource "aws_route_table_association" "association" {
   }
 
   route_table_id = each.value.type == "private" ? (
-    aws_route_table.route_table["${each.value.group_name}-${each.value.az}"].id
+    aws_route_table.this["${each.value.group_name}-${each.value.az}"].id
     ) : (
-    aws_route_table.route_table[each.value.group_name].id
+    aws_route_table.this[each.value.group_name].id
   )
 
-  subnet_id = aws_subnet.subnet["${each.value.group_name}-${each.value.az}"].id
+  subnet_id = aws_subnet.this["${each.value.group_name}-${each.value.az}"].id
 }

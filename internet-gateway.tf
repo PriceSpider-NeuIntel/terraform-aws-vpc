@@ -1,6 +1,4 @@
-resource "aws_internet_gateway" "igw" {
-  vpc_id = aws_vpc.vpc.id
-  tags = merge(var.tags, {
-    "Managed By Terraform" = "true"
-  })
+resource "aws_internet_gateway" "this" {
+  vpc_id = aws_vpc.this.id
+  tags   = var.tags
 }

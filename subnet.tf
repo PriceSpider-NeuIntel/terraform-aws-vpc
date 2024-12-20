@@ -1,4 +1,4 @@
-resource "aws_subnet" "subnet" {
+resource "aws_subnet" "this" {
   for_each = {
     for subnet in flatten([
       for group in var.subnet_groups : [
@@ -15,7 +15,7 @@ resource "aws_subnet" "subnet" {
             )
 
             ipv6_cidr_block = try(cidrsubnet(
-              aws_vpc.vpc.ipv6_cidr_block,
+              aws_vpc.this.ipv6_cidr_block,
               group.ipv6_newbits,
               group.ipv6_first_netnum + index(sort(var.availability_zones), az)
             ), null)
@@ -33,12 +33,11 @@ resource "aws_subnet" "subnet" {
   map_customer_owned_ip_on_launch = each.value.map_customer_owned_ip_on_launch
   map_public_ip_on_launch         = each.value.public_ip
   outpost_arn                     = each.value.outpost_arn
-  vpc_id                          = aws_vpc.vpc.id
+  vpc_id                          = aws_vpc.this.id
 
   tags = merge(each.value.tags, {
-    "Availability Zone"    = each.value.az
-    "Managed By Terraform" = "true"
-    "Name"                 = "${var.name}-${each.value.id}"
-    "Type"                 = each.value.type
+    "Availability Zone" = each.value.az
+    "Name"              = "${var.name}-${each.value.id}"
+    "Type"              = each.value.type
   })
 }

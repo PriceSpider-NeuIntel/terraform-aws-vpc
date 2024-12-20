@@ -13,7 +13,7 @@ resource "aws_instance" "bastion" {
   ami                    = coalesce(try(var.bastion.ami, null), try(data.aws_ami.al2[0].id, null))
   instance_type          = "t2.micro"
   key_name               = aws_key_pair.bastion_ec2_key.id
-  subnet_id              = aws_subnet.subnet[each.key].id
+  subnet_id              = aws_subnet.this[each.key].id
   vpc_security_group_ids = [aws_security_group.bastion.id]
 
   metadata_options {
@@ -23,8 +23,7 @@ resource "aws_instance" "bastion" {
   }
 
   tags = {
-    "Managed By Terraform" = "true"
-    "Name"                 = "bastion-${each.value.subnet_group}-${each.value.az}"
+    "Name" = "bastion-${each.value.subnet_group}-${each.value.az}"
   }
 
   lifecycle {
@@ -46,19 +45,15 @@ resource "aws_key_pair" "bastion_ec2_key" {
     try(var.bastion.public_key, null),
     try(tls_private_key.bastion_ssh_key[0].public_key_openssh, null)
   )
-  tags = {
-    "Managed By Terraform" = "true"
-  }
 }
 
 resource "aws_security_group" "bastion" {
   description = "Manages ingress and egress for bastion hosts in VPC ${var.name}"
   name        = "${var.name}-bastion"
-  vpc_id      = aws_vpc.vpc.id
+  vpc_id      = aws_vpc.this.id
 
   tags = {
-    "Managed By Terraform" = "true"
-    "Name"                 = "${var.name}-bastion"
+    "Name" = "${var.name}-bastion"
   }
 }
 

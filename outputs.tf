@@ -56,7 +56,7 @@ output "dhcp" {
 
 output "dhcp_options" {
   description = "The DHCP options configured for the VPC"
-  value       = aws_vpc_dhcp_options.dhcp_options
+  value       = aws_vpc_dhcp_options.this
 }
 
 output "instance_tenancy" {
@@ -66,18 +66,18 @@ output "instance_tenancy" {
 
 output "internet_gateway" {
   description = "The internet gateway created for this VPC"
-  value       = aws_internet_gateway.igw
+  value       = aws_internet_gateway.this
 }
 
 output "nacls" {
   description = "Network ACLs created for subnet groups in this VPC"
-  value       = aws_network_acl.nacl
+  value       = aws_network_acl.this
 }
 
 output "nacls_by_group" {
   description = "Network ACLs created for subnet groups in this VPC, nested by group (ex. module.my_vpc.nacls_by_group[\"my-group\"].arn)"
   value = {
-    for group in var.subnet_groups : group.name => aws_network_acl.nacl[group.name]
+    for group in var.subnet_groups : group.name => aws_network_acl.this[group.name]
   }
 }
 
@@ -88,27 +88,27 @@ output "name" {
 
 output "nat_gateway" {
   description = "The nat gateways used by this VPC"
-  value       = aws_nat_gateway.ngw
+  value       = aws_nat_gateway.this
 }
 
 output "nat_gateway_eip" {
   description = "The elastic IP addresses used by the nat gateways in this VPC"
-  value       = aws_eip.ngw_eip
+  value       = aws_eip.nat_gateway
 }
 
 output "nat_gateway_nacl" {
   description = "The NACL that manages ingress and egress to the nat gateways for this VPC"
-  value       = aws_network_acl.ngw_nacl
+  value       = aws_network_acl.nat_gateway
 }
 
 output "nat_gateway_route_table" {
   description = "The route table used by the nat gateways in this VPC"
-  value       = aws_route_table.ngw_route_table
+  value       = aws_route_table.nat_gateway
 }
 
 output "nat_gateway_subnets" {
   description = "The subnets containing the nat gateways in this VPC"
-  value       = aws_subnet.ngw_subnet
+  value       = aws_subnet.nat_gateway
 }
 
 output "region" {
@@ -123,7 +123,7 @@ output "route53_resolver_rule_associations" {
 
 output "route_tables" {
   description = "Route tables created for this VPC"
-  value       = aws_route_table.route_table
+  value       = aws_route_table.this
 }
 
 output "route_tables_by_group" {
@@ -133,11 +133,11 @@ output "route_tables_by_group" {
   EOF
   value = merge({
     for group in [for g in var.subnet_groups : g if g.type != "private"] : group.name => (
-      aws_route_table.route_table[group.name]
+      aws_route_table.this[group.name]
     )
     }, {
     for group in [for g in var.subnet_groups : g if g.type == "private"] : group.name => {
-      for az in var.availability_zones : az => aws_route_table.route_table["${group.name}-${az}"]
+      for az in var.availability_zones : az => aws_route_table.this["${group.name}-${az}"]
     }
   })
 }
@@ -154,81 +154,79 @@ output "subnet_groups" {
 
 output "subnets" {
   description = "Subnets created in this VPC"
-  value       = aws_subnet.subnet
+  value       = aws_subnet.this
 }
 
 output "subnets_by_group" {
   description = "Subnets created in this VPC, nested by group and AZ (ex. module.my_vpc.subnets_by_group[\"my-group\"][\"us-west-1a\"].arn)"
   value = {
     for group in var.subnet_groups : group.name => {
-      for az in var.availability_zones : az => aws_subnet.subnet["${group.name}-${az}"]
+      for az in var.availability_zones : az => aws_subnet.this["${group.name}-${az}"]
     }
   }
 }
 
 output "tags" {
   description = "Tags assigned to the VPC"
-  value = merge(var.tags, {
-    "Managed By Terraform" = "true"
-  })
+  value       = var.tags
 }
 
 output "transit_gateway_attachments" {
   description = "Attachments to transit gateways from this VPC"
-  value       = aws_ec2_transit_gateway_vpc_attachment.attachment
+  value       = aws_ec2_transit_gateway_vpc_attachment.this
 }
 
-output "transit_gateway_nacl" {
+output "peering_nacl" {
   description = "The NACL used by the transit gateway subnets"
-  value       = aws_network_acl.tgw_nacl
+  value       = aws_network_acl.peering
 }
 
-output "transit_gateway_route_table" {
-  description = "The route table for the transit gateway subnets"
-  value       = aws_route_table.tgw_route_table
+output "peering_route_table" {
+  description = "The route table for the peering subnets"
+  value       = aws_route_table.peering
 }
 
-output "transit_gateway_subnets" {
-  description = "The subnets created for Transit Gateway attachment network interfaces"
-  value       = aws_subnet.tgw_subnet
+output "peering_subnets" {
+  description = "The subnets created for vpc peering/ tgw network interfaces"
+  value       = aws_subnet.peering
 }
 
 output "vpc" {
   description = "The VPC resource object"
-  value       = aws_vpc.vpc
+  value       = aws_vpc.this
 }
 
 output "vpc_endpoint_nacl" {
   description = "The NACL used by the VPC endpoint subnets"
-  value       = aws_network_acl.endpoint_nacl
+  value       = aws_network_acl.vpc_endpoint
 }
 
 output "vpc_endpoint_route_table" {
   description = "The route table used by the VPC endpoint subnets"
-  value       = aws_route_table.endpoint_route_table
+  value       = aws_route_table.vpc_endpoint
 }
 
 output "vpc_endpoint_security_group" {
   description = "The security group used by the VPC endpoints in this VPC"
-  value       = aws_security_group.endpoint
+  value       = aws_security_group.vpc_endpoint
 }
 
 output "vpc_endpoint_subnets" {
   description = "The subnets that house VPC endpoints in this VPC"
-  value       = aws_subnet.endpoint_subnet
+  value       = aws_subnet.vpc_endpoint
 }
 
 output "vpc_endpoints" {
   description = "VPC endpoints created within this VPC"
-  value       = aws_vpc_endpoint.endpoint
+  value       = aws_vpc_endpoint.this
 }
 
 output "vpc_peering_connection_accepters" {
   description = "VPC peering connections accepted by this VPC"
-  value       = aws_vpc_peering_connection_accepter.peer_accepter
+  value       = aws_vpc_peering_connection_accepter.this
 }
 
 output "vpc_peering_connections" {
   description = "VPC peering connections originating from this VPC"
-  value       = aws_vpc_peering_connection.peer
+  value       = aws_vpc_peering_connection.this
 }

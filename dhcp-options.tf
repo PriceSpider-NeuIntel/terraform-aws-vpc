@@ -1,4 +1,4 @@
-resource "aws_vpc_dhcp_options" "dhcp_options" {
+resource "aws_vpc_dhcp_options" "this" {
   domain_name = coalesce(
     var.dhcp.domain_name,
     data.aws_region.current.name == "us-east-1" ? (
@@ -12,12 +12,11 @@ resource "aws_vpc_dhcp_options" "dhcp_options" {
   netbios_node_type    = var.dhcp.netbios_node_type
 
   tags = merge(var.dhcp.tags, {
-    "Managed By Terraform" = "true"
-    "Name"                 = var.name
+    "Name" = var.name
   })
 }
 
-resource "aws_vpc_dhcp_options_association" "dhcp_options_association" {
-  vpc_id          = aws_vpc.vpc.id
-  dhcp_options_id = aws_vpc_dhcp_options.dhcp_options.id
+resource "aws_vpc_dhcp_options_association" "this" {
+  vpc_id          = aws_vpc.this.id
+  dhcp_options_id = aws_vpc_dhcp_options.this.id
 }
